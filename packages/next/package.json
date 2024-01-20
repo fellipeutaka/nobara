@@ -1,0 +1,53 @@
+{
+	"name": "@nobara/next",
+	"version": "0.1.0",
+	"type": "module",
+	"keywords": [
+		"create-t3-app",
+		"environment variables",
+		"valibot",
+		"next",
+		"nextjs"
+	],
+	"author": {
+		"name": "Fellipe Utaka",
+		"email": "fellipeutaka@gmail.com",
+		"url": "https://github.com/fellipeutaka"
+	},
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/fellipeutaka/nobara",
+		"directory": "packages/next"
+	},
+	"main": "dist/index.js",
+	"module": "dist/index.js",
+	"require": "dist/index.cjs",
+	"types": "dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"require": "./dist/index.cjs"
+		},
+		"./package.json": "./package.json"
+	},
+	"files": ["dist", "package.json", "LICENSE", "README.md"],
+	"scripts": {
+		"build": "tsup",
+		"dev": "tsup --watch",
+		"type-check": "tsc --noEmit"
+	},
+	"dependencies": {
+		"@nobara/core": "workspace:*"
+	},
+	"peerDependencies": {
+		"typescript": ">=4.7.2",
+		"valibot": "^0.26.0"
+	},
+	"peerDependenciesMeta": {
+		"typescript": {
+			"optional": true
+		}
+	}
+}

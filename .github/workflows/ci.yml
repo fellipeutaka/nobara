@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  pull_request:
+    branches: ["*"]
+
+env:
+  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+
+jobs:
+  build-lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node 18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Setup bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: 1.0.23
+
+      - name: Install deps (with cache)
+        run: bun install --frozen-lockfile --ignore-scripts
+
+      - name: Lint and type-check
+        run: bun turbo lint type-check
+
+      - name: Test
+        run: bun test
