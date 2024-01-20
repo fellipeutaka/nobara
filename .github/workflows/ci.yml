@@ -11,26 +11,28 @@ env:
 jobs:
   build-lint:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        node-version: [lts/*]
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - name: Checkout Repo
+        uses: actions/checkout@v4
 
-      - name: Setup Node 18
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8.14.1
+
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
 
-      - name: Setup bun
-        uses: oven-sh/setup-bun@v1
-        with:
-          bun-version: 1.0.23
-
-      - name: Install deps (with cache)
-        run: bun install --frozen-lockfile --ignore-scripts
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
 
       - name: Lint and type-check
-        run: bun turbo lint type-check
+        run: pnpm turbo lint type-check
 
       - name: Test
-        run: bun test
+        run: pnpm test

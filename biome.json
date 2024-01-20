@@ -56,8 +56,5 @@
 				}
 			}
 		}
-	],
-	"javascript": {
-		"globals": ["Bun"]
-	}
+	]
 }

@@ -4,6 +4,13 @@ on:
     branches:
       - main
 
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
 env:
   TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
   TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
@@ -14,28 +21,36 @@ jobs:
     if: ${{ github.repository_owner == 'fellipeutaka' }}
     name: Release
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [lts/*]
     steps:
-      - name: Checkout
+      - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - name: Setup bun
-        uses: oven-sh/setup-bun@v1
+      - uses: pnpm/action-setup@v2
         with:
-          bun-version: 1.0.23
+          version: 8.14.1
 
-      - name: Install deps (with cache)
-        run: bun install --frozen-lockfile --ignore-scripts
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile --ignore-scripts
 
       - name: Build
-        run: bun turbo --filter "./packages/*" build
+        run: pnpm turbo --filter "./packages/*" build
 
       - name: Create Release
         id: changeset
         uses: changesets/action@v1.4.1
         with:
-          commit: "chore(release): 📦 version packages"
-          title: "chore(release): 📦  version packages"
-          publish: bunx changeset publish
+          commit: "chore: new release"
+          title: "chore: new release"
+          publish: pnpm release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

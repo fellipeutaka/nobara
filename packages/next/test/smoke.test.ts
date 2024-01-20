@@ -1,5 +1,4 @@
-/// <reference types="bun-types" />
-import { describe, expect, test } from "bun:test";
+import { describe, expect, test } from "vitest";
 
 import { expectTypeOf } from "expect-type";
 import { picklist, string, transform } from "valibot";

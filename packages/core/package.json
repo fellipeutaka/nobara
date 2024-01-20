@@ -1,8 +1,12 @@
 {
 	"name": "@nobara/core",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"type": "module",
-	"keywords": ["create-t3-app", "environment variables", "valibot"],
+	"keywords": [
+		"create-t3-app",
+		"environment variables",
+		"valibot"
+	],
 	"author": {
 		"name": "Fellipe Utaka",
 		"email": "fellipeutaka@gmail.com",
@@ -26,11 +30,17 @@
 		},
 		"./package.json": "./package.json"
 	},
-	"files": ["dist", "package.json", "LICENSE", "README.md"],
+	"files": [
+		"dist",
+		"package.json",
+		"LICENSE",
+		"README.md"
+	],
 	"scripts": {
 		"build": "tsup",
 		"dev": "tsup --watch",
-		"type-check": "tsc --noEmit"
+		"type-check": "tsc --noEmit",
+		"test": "vitest --run"
 	},
 	"peerDependencies": {
 		"typescript": ">=4.7.2",

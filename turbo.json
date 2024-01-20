@@ -9,17 +9,11 @@
 			"dependsOn": ["^build"],
 			"outputs": ["dist/**"]
 		},
-		"lint": {
-			"dependsOn": ["build"],
-			"outputs": []
-		},
+		"lint": {},
 		"test": {
-			"dependsOn": ["build"],
-			"outputs": []
+			"cache": true
 		},
 		"type-check": {
-			"dependsOn": ["build"],
-			"outputs": [],
 			"cache": true
 		},
 		"clean": {
