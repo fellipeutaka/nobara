@@ -1,0 +1,85 @@
+---
+import { siteConfig } from "~/config/site";
+import { ViewTransitions } from "astro:transitions";
+import { SEO, type Props } from "astro-seo";
+export { type Props } from "astro-seo";
+import "@fontsource/inter";
+import "~/styles/globals.css";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<SEO
+  titleTemplate={`%s | ${siteConfig.name}`}
+  titleDefault={siteConfig.name}
+  description={siteConfig.description}
+  canonical={canonicalURL}
+  charset="utf-8"
+  twitter={{
+    creator: "@fellipeutaka",
+    description: siteConfig.description,
+    image: new URL("/images/og-image.png", Astro.url),
+    title: siteConfig.name,
+    site: siteConfig.url,
+    card: "summary_large_image",
+  }}
+  extend={{
+    meta: [
+      {
+        name: "viewport",
+        content: "width=device-width,initial-scale=1",
+      },
+      {
+        name: "generator",
+        content: Astro.generator,
+      },
+    ],
+    link: [
+      {
+        rel: "icon",
+        type: "image/svg+xml",
+        href: "/favicon.svg",
+      },
+    ],
+  }}
+  {...Astro.props}
+/>
+
+<!-- Font preloads -->
+<link
+  rel="preload"
+  href="/fonts/calsans-semibold.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin
+/>
+
+<!-- Dark mode with prevent flickering flash between navigations -->
+<script is:inline>
+  const setDarkMode = () => {
+    const theme = (() => {
+      if (
+        typeof localStorage !== "undefined" &&
+        localStorage.getItem("theme")
+      ) {
+        return localStorage.getItem("theme");
+      }
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        return "dark";
+      }
+      return "light";
+    })();
+
+    if (theme === "light") {
+      document.documentElement.classList.remove("dark");
+    } else {
+      document.documentElement.classList.add("dark");
+    }
+    window.localStorage.setItem("theme", theme);
+  };
+
+  setDarkMode();
+  document.addEventListener("astro:after-swap", setDarkMode);
+</script>
+
+<ViewTransitions />

@@ -1,0 +1,25 @@
+---
+import { cn } from "mizuhara/utils";
+import { docsConfig } from "~/config/docs";
+import { extractSegmentURL } from "~/lib/utils";
+
+const segment = extractSegmentURL(Astro.url.pathname);
+---
+
+<nav class="hidden gap-6 md:flex">
+  {
+    docsConfig.mainNav.map((item) => (
+      <a
+        href={item.href}
+        class={cn(
+          "flex items-center text-lg font-medium transition-colors hover:text-foreground/80 sm:text-sm",
+          item.href.startsWith(`/${segment}`)
+            ? "text-foreground"
+            : "text-foreground/60",
+        )}
+      >
+        {item.title}
+      </a>
+    ))
+  }
+</nav>

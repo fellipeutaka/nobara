@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  background-image: conic-gradient(
+    at 92% 8%,
+    #202128 90deg,
+    transparent 0 225deg,
+    transparent 0
+  );
+  background-size: 16px 16px;
+  background-attachment: fixed;
+}
+
+.\[\&\>h3\]\:step > h3 {
+  counter-increment: step;
+}
+
+.\[\&\>h3\]\:step > h3:before {
+  position: absolute;
+  display: inline-flex;
+  height: 2rem;
+  width: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--accent) / var(--tw-bg-opacity));
+  text-align: center;
+  text-indent: -1px;
+  font-family: var(--font-cal), ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 500;
+  margin-left: -41px;
+  content: counter(step);
+}

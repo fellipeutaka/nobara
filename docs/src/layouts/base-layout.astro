@@ -1,0 +1,19 @@
+---
+import BaseHead, { type Props } from "~/components/layout/base-head.astro";
+import TailwindIndicator from "~/components/tailwind-indicator.astro";
+import SiteHeader from "~/components/site-header.astro";
+---
+
+<!doctype html>
+<html lang="en" class="motion-safe:scroll-smooth">
+  <head>
+    <BaseHead {...Astro.props} />
+  </head>
+  <body
+    class="grid min-h-screen grid-rows-[4rem,1fr] bg-background text-foreground antialiased"
+  >
+    <SiteHeader />
+    <slot />
+    <TailwindIndicator />
+  </body>
+</html>

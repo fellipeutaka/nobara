@@ -1,0 +1,75 @@
+---
+title: Recipes
+description: Recipes for common use cases
+---
+
+# Recipes
+
+`nobara` supports the full power of Valibot meaning you can use transforms, default values etc. to create a set of powerful and flexible validation schemas for your environment variables. Below we'll look at a few example recipes for
+
+<Callout>
+  All environment variables are strings, so make sure that the first `Schema`
+  is a `string()`. This will be enforced on type-level in the future.
+</Callout>
+
+## Booleans
+
+Coercing booleans from strings is a common use case. Below are 2 examples of how to do this, but you can choose any coercian logic you want.
+
+Valibot's default primitives coercion should not be used for booleans, since every string gets coerced to true.
+
+```ts
+export const env = createEnv({
+  server: {
+    COERCED_BOOLEAN: z
+      .string()
+      // transform to boolean using preferred coercion logic
+      .transform((s) => s !== "false" && s !== "0"),
+
+    ONLY_BOOLEAN: z
+      .string()
+      // only allow "true" or "false"
+      .refine((s) => s === "true" || s === "false")
+      // transform to boolean
+      .transform((s) => s === "true"),
+  },
+  // ...
+});
+```
+
+## Numbers
+
+Coercing numbers from strings is another common use case.
+
+```ts
+export const env = createEnv({
+  server: {
+    SOME_NUMBER: coerce(number(), Number),
+  },
+  // ...
+});
+```
+
+## Storybook
+
+[Storybook](https://storybook.js.org/) uses its own bundler, which is otherwise 
+unaware of `t3-env` and won't call into `runtimeEnv` to ensure that the environment 
+variables are present. You can use Storybook's support for defining environment 
+variables separately to ensure that all environment variables are actually 
+available for Storybook:
+
+```ts
+// .storybook/main.ts
+
+import { env as t3Env } from "~/env/client.mjs";
+
+const config: StorybookConfig = {
+  // other Storybook config...
+  env: (config1) => ({
+    ...config1,
+    ...t3Env,
+  })
+};
+
+export default config;
+```
