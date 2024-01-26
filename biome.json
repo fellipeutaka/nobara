@@ -47,7 +47,7 @@
 	},
 	"overrides": [
 		{
-			"include": ["**/*.config.ts"],
+			"include": ["**/*.config.ts", "**/*.config.mjs"],
 			"linter": {
 				"rules": {
 					"style": {
@@ -56,5 +56,8 @@
 				}
 			}
 		}
-	]
+	],
+	"javascript": {
+		"globals": ["React"]
+	}
 }
