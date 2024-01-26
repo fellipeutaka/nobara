@@ -6,20 +6,21 @@ import { ScrollArea } from "~/components/ui/scroll-area";
 type Props = {
   title: string;
   description: string;
+  slug: string;
 };
 
-const { title, description } = Astro.props;
+const { title, description, slug } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
   <div
-    class="container flex-1 items-start md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[256px_minmax(0,1fr)] lg:gap-10"
+    class="container flex-1 md:grid md:grid-cols-[220px_minmax(0,1fr)] md:gap-6 lg:grid-cols-[256px_minmax(0,1fr)] lg:gap-10"
   >
     <aside
       class="fixed top-[4.0625rem] z-30 -ml-2 -mr-2 hidden h-[calc(100vh-4.0625rem)] w-full shrink-0 overflow-y-auto border-r md:sticky md:block"
     >
-      <ScrollArea className="py-6 pr-4 lg:py-8">
-        <SidebarNav />
+      <ScrollArea client:load className="py-6 pr-4 lg:py-8">
+        <SidebarNav pathname={slug} />
       </ScrollArea>
     </aside>
     <main class="pb-16 max-w-3xl">

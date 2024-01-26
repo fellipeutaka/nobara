@@ -6,27 +6,21 @@ import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-	site: import.meta.env.DEV
-		? "http://localhost:4321"
-		: "https://nobara.vercel.app",
-	integrations: [
-		mdx({
-			syntaxHighlight: "shiki",
-			shikiConfig: { theme: "min-dark" },
-			gfm: true,
-		}),
-		react(),
-		tailwind({
-			applyBaseStyles: false,
-		}),
-	],
-	redirects: {
-		"/docs": "/docs/introduction",
-	},
-	output: "static",
-	adapter: vercel({
-		webAnalytics: {
-			enabled: true,
-		},
-	}),
+  site: "https://nobara.vercel.app",
+  integrations: [
+    mdx({
+      syntaxHighlight: "shiki",
+      shikiConfig: { theme: "min-dark" },
+      gfm: true,
+    }),
+    react(),
+    tailwind({
+      applyBaseStyles: false,
+    }),
+  ],
+  redirects: {
+    "/docs": "/docs/introduction",
+  },
+  output: "static",
+  adapter: vercel(),
 });

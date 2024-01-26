@@ -26,10 +26,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   extend={{
     meta: [
       {
-        name: "viewport",
-        content: "width=device-width,initial-scale=1",
-      },
-      {
         name: "generator",
         content: Astro.generator,
       },
@@ -45,14 +41,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   {...Astro.props}
 />
 
-<!-- Font preloads -->
-<link
-  rel="preload"
-  href="/fonts/calsans-semibold.woff2"
-  as="font"
-  type="font/woff2"
-  crossorigin
-/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <!-- Dark mode with prevent flickering flash between navigations -->
 <script is:inline>
