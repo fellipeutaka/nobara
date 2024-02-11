@@ -24,7 +24,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     }: {
       children: React.ReactNode;
     }) => (
-      <Tabs items={["npm", "yarn", "pnpm", "bun"]} id="package-manager">
+      <Tabs items={["npm", "yarn", "pnpm", "bun"]} persist id="package-manager">
         {children}
       </Tabs>
     ),

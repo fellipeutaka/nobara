@@ -52,6 +52,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       lang="en"
       style={fonts.sans.style}
       className="motion-safe:scroll-smooth [scrollbar-gutter:stable]"
+      suppressHydrationWarning
     >
       <body className="grid min-h-screen grid-rows-[4rem,1fr] bg-background text-foreground antialiased">
         <RootProvider>{children}</RootProvider>
