@@ -1,6 +1,5 @@
 import { fonts } from "@/config/fonts";
 import { siteConfig } from "@/config/site";
-import { Layout } from "fumadocs-ui/layout";
 import { RootProvider } from "fumadocs-ui/provider";
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
@@ -55,23 +54,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       className="motion-safe:scroll-smooth [scrollbar-gutter:stable]"
     >
       <body className="grid min-h-screen grid-rows-[4rem,1fr] bg-background text-foreground antialiased">
-        <RootProvider>
-          <Layout
-            nav={{
-              title: siteConfig.name,
-              githubUrl: siteConfig.links.github,
-              transparentMode: "top",
-            }}
-            links={[
-              {
-                text: "Documentation",
-                url: "/docs",
-              },
-            ]}
-          >
-            {children}
-          </Layout>
-        </RootProvider>
+        <RootProvider>{children}</RootProvider>
       </body>
     </html>
   );
