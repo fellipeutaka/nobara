@@ -1,0 +1,14 @@
+{
+  "title": "headless",
+  "root": true,
+  "pages": [
+    "---Getting Started---",
+    "index",
+    "---Framework Guides---",
+    "core",
+    "nextjs",
+    "---Further Reading---",
+    "recipes",
+    "customization"
+  ]
+}

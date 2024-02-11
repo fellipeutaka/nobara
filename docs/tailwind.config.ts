@@ -1,10 +1,17 @@
+import { createPreset } from "fumadocs-ui/tailwind-plugin";
 import { createShadcnPreset, overrideShadcnTheme } from "mizuhara/plugins";
 import type { Config } from "tailwindcss";
-import { fontFamily } from "tailwindcss/defaultTheme";
 
-const config = {
-  content: ["./src/**/*.{astro,ts,tsx,mdx}"],
+const config: Config = {
+  content: [
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./content/**/*.{md,mdx}",
+    "./mdx-components.{ts,tsx}",
+    "./node_modules/fumadocs-ui/dist/**/*.js",
+  ],
   presets: [
+    createPreset(),
     createShadcnPreset({
       theme: overrideShadcnTheme({
         light: {
@@ -53,13 +60,6 @@ const config = {
       }),
     }),
   ],
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ["InterVariable", "Inter", ...fontFamily.sans],
-      },
-    },
-  },
-} satisfies Config;
+};
 
 export default config;

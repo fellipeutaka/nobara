@@ -1,39 +1,30 @@
 {
   "name": "docs",
-  "type": "module",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro",
-    "lint": "prettier --write . --plugin=prettier-plugin-astro",
-    "format": "prettier --write . --plugin=prettier-plugin-astro"
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start",
+    "preview": "next build && next start",
+    "clean": "rimraf .turbo node_modules .next"
   },
   "dependencies": {
-    "@astrojs/mdx": "^2.1.0",
-    "@astrojs/react": "^3.0.9",
-    "@astrojs/tailwind": "^5.1.0",
-    "@astrojs/vercel": "^7.0.1",
-    "@fontsource/inter": "^5.0.16",
-    "@radix-ui/react-dialog": "^1.0.5",
-    "@radix-ui/react-scroll-area": "^1.0.5",
-    "astro": "^4.2.4",
-    "astro-seo": "^0.8.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "fumadocs-core": "8.1.1",
+    "fumadocs-mdx": "8.0.2",
+    "fumadocs-ui": "8.1.1",
+    "next": "14.1.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.45",
-    "@types/react-dom": "^18.2.18",
-    "mdast-util-toc": "^7.0.0",
+    "@types/mdx": "^2.0.11",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "autoprefixer": "^10.4.16",
     "mizuhara": "^2.4.0",
-    "prettier": "^3.2.4",
-    "prettier-plugin-astro": "^0.13.0",
-    "remark": "^15.0.1",
+    "postcss": "^8.4.32",
+    "prettier": "^3.2.5",
     "sharp": "^0.33.2",
-    "tailwindcss": "^3.4.0",
-    "unist-util-visit": "^5.0.0"
+    "tailwindcss": "^3.4.1"
   }
 }

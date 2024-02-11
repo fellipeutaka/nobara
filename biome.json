@@ -1,64 +1,81 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.5.2/schema.json",
-	"files": {
-		"ignore": ["node_modules", "dist"]
-	},
-	"organizeImports": {
-		"enabled": true
-	},
-	"formatter": {
-		"enabled": true,
-		"indentStyle": "space"
-	},
-	"linter": {
-		"enabled": true,
-		"rules": {
-			"recommended": true,
-			"a11y": {
-				"all": true
-			},
-			"complexity": {
-				"all": true
-			},
-			"correctness": {
-				"all": true
-			},
-			"performance": {
-				"all": true
-			},
-			"security": {
-				"all": true
-			},
-			"style": {
-				"recommended": true,
-				"noDefaultExport": {
-					"level": "error"
-				}
-			},
-			"suspicious": {
-				"all": true,
-				"noConsoleLog": "off"
-			},
-			"nursery": {
-				"all": true,
-				"useImportRestrictions": "off",
-				"noNodejsModules": "off"
-			}
-		}
-	},
-	"overrides": [
-		{
-			"include": ["**/*.config.ts", "**/*.config.mjs"],
-			"linter": {
-				"rules": {
-					"style": {
-						"noDefaultExport": "off"
-					}
-				}
-			}
-		}
-	],
-	"javascript": {
-		"globals": ["React"]
-	}
+  "$schema": "https://biomejs.dev/schemas/1.5.2/schema.json",
+  "files": {
+    "ignore": ["node_modules", "dist"]
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space"
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "a11y": {
+        "all": true
+      },
+      "complexity": {
+        "all": true
+      },
+      "correctness": {
+        "all": true
+      },
+      "performance": {
+        "all": true
+      },
+      "security": {
+        "all": true
+      },
+      "style": {
+        "recommended": true,
+        "noDefaultExport": {
+          "level": "error"
+        }
+      },
+      "suspicious": {
+        "all": true,
+        "noConsoleLog": "off"
+      },
+      "nursery": {
+        "all": true,
+        "useImportRestrictions": "off",
+        "noNodejsModules": "off"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "include": [
+        "**/*.config.ts",
+        "**/*.config.mjs",
+        "docs/app/**/page.tsx",
+        "docs/app/**/layout.tsx",
+        "docs/app/**/template.tsx",
+        "docs/app/**/loading.tsx",
+        "docs/app/**/error.tsx",
+        "docs/app/**/not-found.tsx",
+        "docs/app/**/default.tsx",
+        "docs/app/**/icon.tsx",
+        "docs/app/**/apple-icon.tsx",
+        "docs/app/**/manifest.ts",
+        "docs/app/**/opengraph-image.tsx",
+        "docs/app/**/twitter-image.tsx",
+        "docs/app/**/robots.ts",
+        "docs/app/**/sitemap.ts"
+      ],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          }
+        }
+      }
+    }
+  ],
+  "javascript": {
+    "globals": ["React"]
+  }
 }
