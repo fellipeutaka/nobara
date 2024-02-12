@@ -33,14 +33,14 @@ For a while, we've had validated environment variables in [create-t3-app](https:
 Validating envs are quite easy and can be done in a few lines of code. You can also infer the result from the validation onto your `process.env` object to benefit from autocompletion throughout your application. [Matt Pocock](https://www.youtube.com/watch?v=q1im-hMlKhM) did a video explaining how you can implement this approach:
 
 ```ts
-import { object, string, type Output } from "valibot";
+import { type Output, object, parse, string } from "valibot";
 
 const envVariables = object({
   DATABASE_URL: string(),
   CUSTOM_STUFF: string(),
 });
 
-envVariables.parse(process.env);
+parse(envVariables, process.env);
 
 declare global {
   namespace NodeJS {

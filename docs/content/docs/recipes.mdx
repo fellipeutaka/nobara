@@ -17,21 +17,21 @@ Coercing booleans from strings is a common use case. Below are 2 examples of how
 Valibot's default primitives coercion should not be used for booleans, since every string gets coerced to true.
 
 ```ts
+import { custom, string, transform } from "valibot";
+
 export const env = createEnv({
   server: {
-    COERCED_BOOLEAN: z
-      .string()
-      // transform to boolean using preferred coercion logic
-      .transform((s) => s !== "false" && s !== "0"),
+    // transform to boolean using preferred coercion logic
+    COERCED_BOOLEAN: transform(string(), (s) => s !== "false" && s !== "0"),
 
-    ONLY_BOOLEAN: z
-      .string()
-      // only allow "true" or "false"
-      .refine((s) => s === "true" || s === "false")
-      // transform to boolean
-      .transform((s) => s === "true"),
+    // only allow "true" or "false"
+    // transform to boolean
+    ONLY_BOOLEAN: transform(
+      string([custom((s) => s === "true" || s === "false")]),
+      (s) => s === "true"
+    ),
   },
-  // ...
+  experimental__runtimeEnv: {},
 });
 ```
 
@@ -40,6 +40,8 @@ export const env = createEnv({
 Coercing numbers from strings is another common use case.
 
 ```ts
+import { coerce, number } from "valibot";
+
 export const env = createEnv({
   server: {
     SOME_NUMBER: coerce(number(), Number),
